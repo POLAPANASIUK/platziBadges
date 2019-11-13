@@ -11,17 +11,16 @@ class BadgesListItem extends React.Component {
       <div className="BadgesListItem">
         <img
           className="BadgesListItem__avatar"
-          src={this.props.badge.image}
-          alt={`${this.props.badge.name} ${this.props.badge.species}`}
+          src={this.props.badge.avatarUrl}
+          alt={`${this.props.badge.firstName} ${this.props.badge.lastName}`}
         />
-
         <div>
           <strong>
-            {this.props.badge.name} {this.props.badge.gender}
+            {this.props.badge.name} {this.props.badge.lastName}
           </strong>
-          <br /><span style={{ color: "#00acee" }}> <FontAwesomeIcon icon={faTwitter} /> @{this.props.badge.name}</span>
+          <br /><span style={{ color: "#00acee" }}> <FontAwesomeIcon icon={faTwitter} /> @{this.props.badge.twitter}</span>
           <br />
-          {this.props.badge.species}
+          {this.props.badge.jobTitle}
         </div>
       </div>
     );
@@ -39,7 +38,7 @@ class BadgesList extends React.Component {
           </Link>
         </div>
     );
-  }
+    }
     return (
       <div className="BadgesList">
         <ul className="list-unstyled">

@@ -4,73 +4,41 @@ import { Link } from 'react-router-dom';
 import './styles/Badges.css';
 import confLogo from '../images/badge-header.svg';
 import BadgesList from '../components/BadgesList';
+import api from '../api';
 
 class Badges extends React.Component {
   state = {
-    nextPage: 1,
     loading: true,
     error: null,
-    data: {
-      results:[]
-    },
+    data: undefined,
   };
-  constructor(props) {
-    super(props);
-    console.log('1. constructor()');
-  }
+
   componentDidMount() {
-    console.log('3. componentDidMount()');
-    this.fetchCharacters();
+    this.fetchData();
   }
-  fetchCharacters = async() => {
-    console.log('x. fetchingCharacters...');
-    this.setState({
-      loading: true,
-      error:null
-    });
+
+  fetchData = async () => {
+    this.setState({ loading: true, error: null });
+
     try {
-      const response = await fetch(`https://rickandmortyapi.com/api/character/?page=${this.state.nextPage}`)
-      const data = await response.json();
-      this.setState({
-        loading: false,
-        data: {
-          info: data.info,
-          results: [].concat(this.state.data.results, data.results),
-        },
-        nextPage: this.state.nextPage+1,
-      });
+      const data = await api.badges.list();
+      this.setState({ loading: false, data: data });
+    } catch (error) {
+      this.setState({ loading: false, error: error });
     }
-    catch (error) {
-      this.setState({
-        loading: false,
-        data: error,
-      });
-    }   
-  }
-  componentDidUpdate(prevProps, prevState) {
-    console.log('5. componentDidUpdate()');
-    console.log({
-      prevProps: prevProps,
-      prevState: prevState,
-    });
+  };
 
-    console.log({
-      props: this.props,
-      state: this.state,
-    });
-  }
-
-  componentWillUnmount() {
-    console.log('6. componentWillUnmount');
-    clearTimeout(this.timeoutId);
-  }
   render() {
-    if(this.state.loading===true) {
-      return 'Cargando..';
-     }
-    return ( 
-      <React.Fragment>
+    if (this.state.loading === true) {
+      return 'Cargando...';
+    }
 
+    if (this.state.error) {
+      return `Error: ${this.state.error.message}`;
+    }
+
+    return (
+      <React.Fragment>
         <div className="Badges">
           <div className="Badges__hero">
             <div className="Badges__container">
@@ -90,10 +58,7 @@ class Badges extends React.Component {
             </Link>
           </div>
 
-          <BadgesList badges={this.state.data.results} />
-          { !this.props.loading &&(
-          <button className="btn btn-success" onClick={()=>this.fetchCharacters()}>Cargar más personajes</button>
-        )}
+          <BadgesList badges={this.state.data} />
         </div>
       </React.Fragment>
     );
