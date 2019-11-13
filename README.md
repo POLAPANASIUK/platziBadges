@@ -1,0 +1,2 @@
+# platziBadges
+curso Platzi
