@@ -1,0 +1,19 @@
+.Home {
+    width: 100%;
+    padding-top: 8rem;
+    background: url('../../images/stars.svg'), #1B1B25;
+    color: #ffffff;
+    min-height: calc(100vh-60px);
+    align-content: center;
+    font-weight: bold;
+    display: flex;
+  }
+
+  .Home__logo {
+    width: 250px;
+    height: 250px;
+  }
+  .Home__astronauts {
+    width: 550px;
+    height: 400px;
+  }
