@@ -51,9 +51,6 @@ class BadgesList extends React.Component {
             );
           })}
         </ul>
-        { !this.props.loading &&(
-          <button className="btn btn-success" onClick={()=>this.fetchCharacters()}>Cargar más personajes</button>
-        )}
       </div>
       
     );
