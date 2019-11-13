@@ -65,7 +65,10 @@ class Badges extends React.Component {
     clearTimeout(this.timeoutId);
   }
   render() {
-    return (
+    if(this.state.loading===true) {
+      return 'Cargando..';
+     }
+    return ( 
       <React.Fragment>
 
         <div className="Badges">
