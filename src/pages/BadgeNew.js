@@ -1,9 +1,10 @@
 import React from 'react';
 
 import './styles/BadgeNew.css';
-import header from '../images/badge-header.svg';
 import Badge from '../components/Badge';
 import BadgeForm from '../components/BadgeForm';
+import header from '../images/platziconf-logo.svg';
+
 
 class BadgeNew extends React.Component {
   state = {
@@ -29,18 +30,18 @@ class BadgeNew extends React.Component {
     return (
       <div>
         <div className="BadgeNew__hero">
-          <img className="img-fluid" src={header} alt="Logo" />
+          <img className="img-fluid BadgeNew__hero-image" src={header} alt="Logo" />
         </div>
 
         <div className="container">
           <div className="row">
             <div className="col-6">
               <Badge
-                firstName={this.state.form.firstName}
-                lastName={this.state.form.lastName}
-                twitter={this.state.form.twitter}
-                jobTitle={this.state.form.jobTitle}
-                email={this.state.form.email}
+                firstName={this.state.form.firstName || 'FIRST_NAME'}
+                lastName={this.state.form.lastName || 'LAST_NAME'}
+                twitter={this.state.form.twitter || 'TWITTER'}
+                jobTitle={this.state.form.jobTitle || 'JOBTITLE'}
+                email={this.state.form.email || 'EMAIL'}
                 avatarUrl="https://rickandmortyapi.com/api/character/avatar/4.jpeg"
               />
             </div>
