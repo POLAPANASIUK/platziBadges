@@ -4,6 +4,7 @@ import './styles/BadgeNew.css';
 import Badge from '../components/Badge';
 import BadgeForm from '../components/BadgeForm';
 import header from '../images/platziconf-logo.svg';
+import api from '../api';
 
 
 class BadgeNew extends React.Component {
@@ -25,6 +26,17 @@ class BadgeNew extends React.Component {
       },
     });
   };
+  handleSubmit = async e => {
+    e.preventDefault();
+    this.setState({ loading: true, error: null });
+
+    try {
+      await api.badges.create(this.state.form);
+      this.setState({ loading: false });
+    } catch (error) {
+      this.setState({ loading: false, error: error });
+    }
+  };
 
   render() {
     return (
@@ -42,14 +54,16 @@ class BadgeNew extends React.Component {
                 twitter={this.state.form.twitter || 'TWITTER'}
                 jobTitle={this.state.form.jobTitle || 'JOBTITLE'}
                 email={this.state.form.email || 'EMAIL'}
-                avatarUrl="https://rickandmortyapi.com/api/character/avatar/4.jpeg"
+                avatarUrl="https://www.gravatar.com/avatar/21594ed15d68ace3965642162f8d2e84?d=identicon"
               />
             </div>
 
             <div className="col-6">
               <BadgeForm
-                onChange={this.handleChange}
-                formValues={this.state.form}
+                onChange = {this.handleChange}
+                onSubmit = {this.handleSubmit}
+                formValues = {this.state.form}
+
               />
             </div>
           </div>

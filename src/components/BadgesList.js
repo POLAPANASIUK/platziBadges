@@ -4,16 +4,20 @@ import './styles/BadgesList.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import {Link} from 'react-router-dom';
+import Gravatar from './Gravatar' ;
+
 
 class BadgesListItem extends React.Component {
   render() {
     return (
       <div className="BadgesListItem">
-        <img
+        {/* <img
           className="BadgesListItem__avatar"
           src={this.props.badge.avatarUrl}
           alt={`${this.props.badge.firstName} ${this.props.badge.lastName}`}
-        />
+        /> */}
+                <Gravatar className="BadgesListItem__avatar" email={this.props.badge.email} />
+
         <div>
           <strong>
             {this.props.badge.name} {this.props.badge.lastName}
