@@ -21,7 +21,7 @@ class Home extends React.Component {
                         <h4 className="text-cursive">The easiest way to manage your conference</h4>
                         <div className="Badges__buttons">
                             <Link to="/badges" className="btn btn-primary">
-                            New Badge
+                            Start
                             </Link>
                         </div>                    
                     </div>
